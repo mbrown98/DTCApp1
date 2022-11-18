@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
+            TitleView()
+                .blur(radius: 20)
+            
             BackCardView()
                 .background(Color("card4"))
                 .cornerRadius(20)
@@ -33,6 +36,10 @@ struct ContentView: View {
             
             CardView()
                 .blendMode(.hardLight)
+            
+            // sets spacing between each component in the stack
+            BottomCardView()
+                .blur(radius: 20)
         }
     }
 }
@@ -79,5 +86,45 @@ struct BackCardView: View {
             Spacer()
         }
         .frame(width: 340, height: 220)
+    }
+}
+
+struct TitleView: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Certificates")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+            .padding()
+            Image("Background1")
+            Spacer()
+        }
+    }
+}
+
+struct BottomCardView: View {
+    var body: some View {
+        VStack(spacing: 20) {
+            Rectangle()
+                .frame(width: 40, height: 5)
+                .cornerRadius(3)
+                .opacity(0.1)
+            Text("This certificate is proof that Meng To has achieved the UI Design course with approval from a Design+Code instructor.")
+                .multilineTextAlignment(.center)
+                .font(.subheadline)
+                .lineSpacing(4)
+            Spacer()
+        }
+        .padding(.top, 8)
+        .padding(.horizontal, 20)
+        // pushes all the way to max width
+        .frame(maxWidth: .infinity)
+        .background(Color.white)
+        .cornerRadius(30)
+        .shadow(radius: 20)
+        .offset(x: 0, y: 500)
     }
 }
